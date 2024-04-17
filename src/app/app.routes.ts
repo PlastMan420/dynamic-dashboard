@@ -5,10 +5,12 @@ import { UserListComponent } from './pages/user-list/user-list.component';
 export const routes: Routes = [
   {
     path: 'user/:id',
-    component: UserDetailsComponent
+    component: UserDetailsComponent,
+    data: { animation: 'openClosePage' }
   },
   {
     path: '',
-    component: UserListComponent
+    component: UserListComponent,
+    data: { animation: 'openClosePage' }
   }
 ];

@@ -11,6 +11,7 @@ import { ButtonModule } from 'primeng/button';
 export class HeaderComponent implements OnInit {
   constructor() { }
 
+  @Input() title = "Header";
   @Output() back = new EventEmitter();
 
   ngOnInit() {

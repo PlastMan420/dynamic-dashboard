@@ -1,5 +1,6 @@
 import { APP_INITIALIZER, ApplicationConfig } from '@angular/core';
 import { provideRouter } from '@angular/router';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 import { routes } from './app.routes';
 import { provideState, provideStore } from '@ngrx/store';
@@ -10,6 +11,7 @@ import { InjectorProvider } from './injector-provider.service';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
+    provideAnimations(),
     provideStore(),
     provideState({ name: 'cache', reducer: cacheReducer }),
     provideHttpClient(),

@@ -53,7 +53,7 @@ export class UserListComponent {
     this.storeData(firstPage);
 
     // artificial delay to test page loader
-    await this.delay(900).then(() => console.log('ran after 1 second1 passed'));
+    await this.delay(900);
   }
 
   /**

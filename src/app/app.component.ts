@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { ChildrenOutletContexts, RouterOutlet } from '@angular/router';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { PageLoaderService } from './services/pageLoader.service';
 import { AsyncPipe } from '@angular/common';
@@ -12,9 +12,14 @@ import { AsyncPipe } from '@angular/common';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-/**
- *
- */
-constructor(protected pageLoaderService: PageLoaderService) {
-}
+  constructor(
+    protected pageLoaderService: PageLoaderService,
+    private contexts: ChildrenOutletContexts
+  ) {}
+
+  getRouteAnimationData() {
+    return this.contexts.getContext('primary')?.route?.snapshot?.data?.[
+      'animation'
+    ];
+  }
 }
