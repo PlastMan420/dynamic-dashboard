@@ -22,6 +22,7 @@
     "@angular/router": "^17.3.4",
     "@ngrx/store": "^17.2.0",
     "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.11.3",
     "primeng": "^17.13.0",
     "rxjs": "~7.8.1",
     "tslib": "^2.6.2",

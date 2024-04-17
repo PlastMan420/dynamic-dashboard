@@ -1,3 +1,10 @@
-<p>
-  user-details works!
-</p>
+<header (back)="backToUserList()"></header>
+
+<div class="text-center w-100" style="top: 25%; position: absolute">
+  <img class="p-4" [src]="(userDetails | async)?.data?.avatar" alt="" />
+  <h4>
+    {{ (userDetails | async)?.data?.first_name }}
+    {{ (userDetails | async)?.data?.last_name }} 
+  </h4>
+  <h4>{{ (userDetails | async)?.data?.email }}</h4>
+</div>

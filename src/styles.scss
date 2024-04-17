@@ -1,1 +1,21 @@
-/* You can add global styles to this file, and also import other style files */
+#pageloader {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: gray;
+  opacity: 0.6;
+  z-index: 1000;
+  text-align: center;
+  align-content: center;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: .5rem 1.25rem;
+}
+
+tr:hover {
+  border: 1px solid black;
+}

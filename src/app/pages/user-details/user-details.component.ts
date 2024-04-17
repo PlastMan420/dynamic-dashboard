@@ -3,6 +3,9 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { UserDetails } from '../../types/types';
+import { HeaderComponent } from '../../components/header/header.component';
+import { PageLoader } from '../../decorators';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-user-details',
@@ -10,6 +13,7 @@ import { UserDetails } from '../../types/types';
   styleUrls: ['./user-details.component.scss'],
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [HeaderComponent, AsyncPipe]
 })
 export class UserDetailsComponent implements OnInit {
   constructor(
@@ -18,19 +22,35 @@ export class UserDetailsComponent implements OnInit {
     private httpClient: HttpClient
   ) {}
 
-  userDetails!: UserDetails;
+  userDetails!: Promise<UserDetails>; 
+  fullName!: string;
 
   async ngOnInit() {
     const userId = this.route.snapshot.paramMap.get('id');
 
     if (!userId) return;
 
-    this.userDetails = await this.getUserDetails(userId);
+    this.userDetails = this.getUserDetails(userId);
   }
 
-  getUserDetails(userId: number | string) {
+  /**
+   * 
+   * @param userId 
+   * @returns void
+   * 
+   * Load user details.
+   */
+  @PageLoader
+  async getUserDetails(userId: number | string) {
     return firstValueFrom(
       this.httpClient.get<UserDetails>(`https://reqres.in/api/users/${userId}`)
     );
+  }
+
+  /**
+   * Go back to list of users.
+   */
+  backToUserList(){
+    this.router.navigateByUrl('/')
   }
 }

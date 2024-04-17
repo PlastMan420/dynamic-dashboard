@@ -1,0 +1,46 @@
+<div class="header">
+  <div>
+    <h1 class="m-0">Users</h1>
+  </div>
+
+  <div class="rhs">
+    <label for="searchtable" class="fw-bold pe-2">Search</label>
+    <input pInputText type="text" id="searchtable" placeholder="Search by user id" (input)="searchUser($any($event.target), dt1)">
+  </div>
+</div>
+
+<div class="w-100 text-center">
+  <div class="d-flex justify-content-center">
+    
+    <p-table
+    #dt1
+    [value]="dataSource"
+    [lazy]="true"
+    (onPage)="loadCustomers($event)"
+    dataKey="id"
+    [paginator]="true"
+    [rows]="rowsPerPage"
+    [totalRecords]="totalRecords"
+    [showCurrentPageReport]="true"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    [globalFilterFields]="['id']"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Avatar</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-data>
+      <tr (click)="goToUserDetails(data.id)" style="cursor: pointer;">
+        <td><img [src]="data.avatar" alt="" /></td>
+        <td>{{ data.first_name }}</td>
+        <td>{{ data.last_name }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+  </div>
+</div>
+
